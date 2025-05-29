@@ -1,0 +1,11 @@
+.grade-dicionario {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  text-align: left;
+  padding: 10px 30px;
+  max-height: 300px; 
+  overflow-y: auto;  
+  border: 1px solid #39ff14;
+  border-radius: 12px;
+}
