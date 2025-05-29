@@ -7,5 +7,5 @@ pra rodar apenas:
 git clone https://github.com/Str44ng33/PlantaFix/
 cd PlantaFix
 npm install
-npx serve
+npm start
 ```
