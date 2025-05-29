@@ -5,7 +5,7 @@ Projeto de feira de ciências onde o usuário fala o nome de uma doença ou sint
 pra rodar apenas:
 ```bash
 git clone https://github.com/Str44ng33/PlantaFix/
-cd Plantafix
+cd PlantaFix
 npm install
 npx serve
 ```
