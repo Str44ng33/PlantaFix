@@ -1,4 +1,5 @@
 # PlantaFix
+![foto]([URL-da-imagem](https://terramagna.com.br/wp-content/uploads/2022/09/Planta-jovem-luz-solar.jpg))
 
 Projeto de feira de ciências onde o usuário fala o nome de uma doença ou sintoma, e o programa responde qual planta pode curar. Além disso, mostra como cultivar a planta, onde achar, etc...
 
