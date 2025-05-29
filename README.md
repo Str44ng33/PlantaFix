@@ -6,6 +6,6 @@ pra rodar apenas:
 ```bash
 git clone https://github.com/Str44ng33/PlantaFix/
 cd Plantafix
-Npm install
+npm install
 npx serve
 ```
