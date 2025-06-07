@@ -160,15 +160,15 @@ export default function PlantaFinder() {
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1 style={{ color: '#39FF14' }}>Plantafix</h1>
-        <img
-          src="/logo.png"
-          alt="Logo"
-          style={{
-            height: 250,
-            objectFit: 'contain',
-          }}
-        />
-      </div>
+             <img
+        src={`${import.meta.env.BASE_URL}logo.png`}
+        alt="Logo"
+        style={{
+          height: 250,
+          objectFit: 'contain',
+        }}
+      />
+
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
         <input
