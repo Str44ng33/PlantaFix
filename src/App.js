@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import logo from './assets/logo.png';
 
 const doencasEPlantas = {
 "Artrite": "Salix alba", "Asma": "Eucalyptus globulus", "Câncer": "Withania somnifera", "Catarro": "Tussilago farfara", "Diabetes": "Gymnema sylvestre", "Insônia": "Valeriana officinalis", "Dor de cabeça": "Mentha piperita", "Hipertensão": "Allium sativum", "Gripes": "Echinacea purpurea", "Dores musculares": "Arnica montana", "Depressão": "Hypericum perforatum", "Gastrite": "Zingiber officinale", "Problemas digestivos": "Cuminum cyminum", "Tensão nervosa": "Lavandula angustifolia", "Úlcera gástrica": "Cichorium intybus", "Cólica menstrual": "Angelica sinensis", "Candidíase": "Cucumis sativus", "Colesterol alto": "Panax ginseng", "Dores de estômago": "Matricaria chamomilla", "Dor de dente": "Syzygium aromaticum", "Infeções urinárias": "Vaccinium macrocarpon", "Problemas respiratórios": "Thymus vulgaris", "Enxaqueca": "Tanacetum parthenium", "Azia": "Cucumis melo", "Queimaduras": "Aloe vera", "Anemia": "Trifolium pratense", "Infecção de garganta": "Salvia officinalis", "Dores nas articulações": "Boswellia serrata", "Bronquite": "Althaea officinalis", "Eczema": "Calendula officinalis", "Câncer de fígado": "Andrographis paniculata", "Hemorroidas": "Hamamelis virginiana", "Vermes intestinais": "Chenopodium ambrosioides", "Diarreia": "Coptis chinensis", "Constipação": "Rheum officinale", "Cálculos renais": "Asparagus racemosus", "Hipotireoidismo": "Coleus forskohlii", "Pele seca": "Cocos nucifera", "Infecção de ouvido": "Echinacea purpurea", "Amigdalite": "Melissa officinalis", "Hemorragias": "Achillea millefolium", "Alzheimer": "Ginkgo biloba", "Cálculos biliares": "Taraxacum officinale", "Tontura": "Zingiber officinale", "Náuseas": "Mentha spicata", "Febre": "Tilia cordata", "Hipoglicemia": "Momordica charantia", "Fadiga": "Eleutherococcus senticosus", "Infecção de pele": "Chamaecyparis obtusa", "Tosse": "Cinnamomum verum", "Queda de cabelo": "Trigonella foenum-graecum", "Alergia": "Nicotiana tabacum", "Desidratação": "Cucumis sativus", "Úlcera péptica": "Myrtus communis", "Cistos ovarianos": "Vitex agnus-castus", "Pneumonia": "Eucalyptus citriodora", "Aftas": "Sanguinaria canadensis", "Rinite alérgica": "Allium cepa", "Pedra nos rins": "Tribulus terrestris", "Acne": "Azadirachta indica", "Dores de garganta": "Zingiber officinale", "Psoríase": "Vitis vinifera", "Hepatite": "Silybum marianum", "Alergias alimentares": "Bromelain", "Cálculos renais": "Phyllanthus niruri", "Varizes": "Ruscus aculeatus", "Obesidade": "Camellia sinensis", "Candidíase oral": "Cinnamomum zeylanicum", "Anorexia": "Glycyrrhiza glabra", "Gripe suína": "Eucalyptus globulus", "Tensão alta": "Hibiscus sabdariffa", "Dores nas costas": "Capsicum annuum", "Cistite": "Orthosiphon aristatus", "Infecções bacterianas": "Berberis vulgaris", "Úlceras na boca": "Carya ovata", "Gota": "Prunus cerasus", "Anemia ferropriva": "Trigonella foenum-graecum", "Vermes": "Cucurbita pepo", "Câncer de mama": "Curcuma longa", "Câncer de pulmão": "Crataegus monogyna", "Espirros": "Urtica dioica", "Rugas": "Hibiscus rosa-sinensis", "Lúpus": "Corydalis yanhusuo", "Acne": "Camellia sinensis", "Alergia alimentar": "Allium sativum", "Hipotensão": "Panax ginseng", "Estresse": "Passiflora incarnata", "Sinusite": "Cinnamomum zeylanicum", "Aftas": "Calendula officinalis", "Hemorroidas internas": "Aesculus hippocastanum", "Malária": "Artemisia annua", "Hipocalcemia": "Ostrea edulis", "Problemas digestivos": "Trigonella foenum-graecum", "Dores no corpo": "Capsicum annuum", "Hemorragias nasais": "Achillea millefolium", "Laringite": "Althaea officinalis", "Câncer de cólon": "Curcuma longa", "Sindrome do intestino irritável": "Mentha piperita", "Obesidade": "Citrus sinensis", "Cálculos vesiculares": "Chanca Piedra"
@@ -158,17 +159,17 @@ export default function PlantaFinder() {
         margin: '0 auto',
       }}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h1 style={{ color: '#39FF14' }}>Plantafix</h1>
-        <img
-          src="/logo.png"
-          alt="Logo"
-          style={{
-            height: 250,
-            objectFit: 'contain',
-          }}
-        />
-      </div>
+       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <h1 style={{ color: '#39FF14' }}>Plantafix</h1>
+    <img
+      src={logo}
+      alt="Logo"
+      style={{
+        height: 250,
+        objectFit: 'contain',
+      }}
+    />
+  </div>
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
         <input
