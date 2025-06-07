@@ -272,20 +272,28 @@ export default function PlantaFinder() {
           </button>
         )}
       </div>
+{/* Footer */}
+<footer
+  style={{
+    marginTop: 40,
+    padding: '20px 0',
+    textAlign: 'center',
+    color: '#777',
+    fontSize: '0.9rem',
+  }}
+>
+  este site foi feito pelos alunos do CMM: Matheus Mendonça, Thalita Pina e Heitor Rocha  
+  <br />
+  <a
+    href="https://github.com/Str44ng33/PlantaFix"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ color: '#39FF14', textDecoration: 'none', marginTop: 8, display: 'inline-block' }}
+  >
+    ❖ GitHub do projeto
+  </a>
+</footer>
 
-      {/* Footer */}
-      <footer
-        style={{
-          marginTop: 40,
-          padding: '20px 0',
-          textAlign: 'center',
-          color: '#777',
-          fontSize: '0.9rem',
-        }}
-      >
-        este site foi feito pelos alunos do CMM: Matheus Mendonça, Thalita Pina e Heitor Rocha
-      </footer>
     </div>
   );
 }
-
