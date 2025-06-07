@@ -159,10 +159,10 @@ export default function PlantaFinder() {
         margin: '0 auto',
       }}
     >
-       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
     <h1 style={{ color: '#39FF14' }}>Plantafix</h1>
     <img
-      src={logo}
+      src={process.env.PUBLIC_URL + '/logo.png'}
       alt="Logo"
       style={{
         height: 250,
@@ -170,7 +170,6 @@ export default function PlantaFinder() {
       }}
     />
   </div>
-
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
         <input
           type="text"
