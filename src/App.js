@@ -158,14 +158,6 @@ export default function PlantaFinder() {
         margin: '0 auto',
       }}
     >
-      <img
-  src={`${import.meta.env.BASE_URL}logo.png`}
-  alt="Logo"
-  style={{
-    height: 250,
-    objectFit: 'contain',
-  }}
-/>
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
         <input
           type="text"
