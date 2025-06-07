@@ -7,19 +7,10 @@ O sistema também oferece informações sobre cultivo, localização geográfica
 
 ─────────────────────────────
 
-Site oficial do projeto:  
+*Site oficial do projeto:*  
 https://str44ng33.github.io/PlantaFix/
 
 ─────────────────────────────
 
-Informações adicionais:  
-
-• Interface escura com estética moderna  
-• Suporte multilíngue com tradução automática  
-• Integração com APIs botânicas e médicas confiáveis  
-• Estrutura modular e expansível  
-
-─────────────────────────────
-
-Desenvolvido por alunos do CMM:  
+*Desenvolvido por alunos do CMM:*  
 Matheus Mendonça, Thalita Pina e Heitor Rocha
