@@ -77,37 +77,40 @@ export default function PlantaFinder() {
     return 'Descrição não disponível.';
   };
 
-  const fetchPubmed = async term => {
-    try {
-      const sr = await fetch(
-        `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(
-          term
-        )}&retmax=1&retmode=json`
-      );
-      const { esearchresult } = await sr.json();
-      const id = esearchresult.idlist[0];
-      if (!id) throw new Error();
+const fetchPubmed = async term => {
+  try {
+    const searchUrl = 
+      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?` +
+      `db=pubmed&term=${encodeURIComponent(term)}&retmax=2&retmode=json`;
+    const sr = await fetch(searchUrl);
+    const { esearchresult } = await sr.json();
+    const id = esearchresult.idlist[0];
+    if (!id) throw new Error('Nenhum resultado encontrado');
 
-      const su = await fetch(
-        `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=${id}&retmode=json`
-      );
-      const jsu = await su.json();
-      const doc = jsu.result[id];
-      const autor = doc.authors?.[0]?.name || 'Desconhecido';
-      const tituloEn = doc.title;
-      const link = `https://pubmed.ncbi.nlm.nih.gov/${id}/`;
-      const tr = await fetch(
-        `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=pt&dt=t&q=${encodeURIComponent(
-          tituloEn
-        )}`
-      );
-      const jtr = await tr.json();
-      const tituloPt = jtr[0].map(seg => seg[0]).join('');
-      return { autor, titulo: tituloPt, link };
-    } catch {
-      return { autor: '', titulo: '', link: '' };
-    }
-  };
+    const summaryUrl = 
+      `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?` +
+      `db=pubmed&id=${id}&retmode=json`;
+    const su = await fetch(summaryUrl);
+    const jsu = await su.json();
+    const doc = jsu.result[id];
+
+    const autor = doc.authors?.[0]?.name || 'Desconhecido';
+    const tituloEn = doc.title;
+    const link = `https://pubmed.ncbi.nlm.nih.gov/${id}/`;
+
+    const translateUrl = 
+      `https://translate.googleapis.com/translate_a/single?` +
+      `client=gtx&sl=en&tl=pt&dt=t&q=${encodeURIComponent(tituloEn)}`;
+    const tr = await fetch(translateUrl);
+    const jtr = await tr.json();
+    const tituloPt = jtr[0].map(seg => seg[0]).join('');
+
+    return { autor, titulo: tituloPt, link };
+  } catch (e) {
+    console.warn('Erro no fetchPubmed:', e);
+    return { autor: '', titulo: '', link: '' };
+  }
+};
 
   const handleBuscar = async () => {
     const key = normalize(doenca.trim());
@@ -175,10 +178,11 @@ export default function PlantaFinder() {
             marginTop: '8px',
           }}
         >
-          Este site é um projeto de feira de ciências, no qual o usuário
-          informa a doença ou sintoma que possui e o site retornará uma planta
-          que pode curar ou tratar essa condição. Nossas fontes de pesquisa são
-          da Wikipédia, na parte de descrição.
+	Este site é um projeto de feira de ciências,
+	no qual o usuário informa a doença ou sintoma que possui
+	e o site retornará uma planta que pode curar ou tratar essa condição.
+	Nossas fontes de pesquisa são a Wikipédia para a parte de descrição 
+	e a PubMed para artigos científicos.		
         </p>
       </div>
 
@@ -187,7 +191,7 @@ export default function PlantaFinder() {
         <input
           type="text"
           placeholder="O que você quer tratar/curar?"
-          value={doenca}
+          value={doenca} // Nossa, vc realmente tá olhando o nosso código
           onChange={e => setDoenca(e.target.value)}
           style={{
             padding: 8,
@@ -217,7 +221,7 @@ export default function PlantaFinder() {
       {/* pesquisa */}
       <input
         type="text"
-        placeholder="Pesquise por seu problema."
+        placeholder="Pesquise pela sua condição de saúde"
         value={pesquisa}
         onChange={e => setPesquisa(e.target.value)}
         style={{
