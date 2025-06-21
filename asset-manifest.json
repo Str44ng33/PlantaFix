@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/PlantaFix/static/css/main.9c3d30ec.css",
-    "main.js": "/PlantaFix/static/js/main.60c4c8aa.js",
+    "main.css": "/PlantaFix/static/css/main.7dccbcc6.css",
+    "main.js": "/PlantaFix/static/js/main.fa807582.js",
     "static/js/453.c93807f2.chunk.js": "/PlantaFix/static/js/453.c93807f2.chunk.js",
     "index.html": "/PlantaFix/index.html",
-    "main.9c3d30ec.css.map": "/PlantaFix/static/css/main.9c3d30ec.css.map",
-    "main.60c4c8aa.js.map": "/PlantaFix/static/js/main.60c4c8aa.js.map",
+    "main.7dccbcc6.css.map": "/PlantaFix/static/css/main.7dccbcc6.css.map",
+    "main.fa807582.js.map": "/PlantaFix/static/js/main.fa807582.js.map",
     "453.c93807f2.chunk.js.map": "/PlantaFix/static/js/453.c93807f2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9c3d30ec.css",
-    "static/js/main.60c4c8aa.js"
+    "static/css/main.7dccbcc6.css",
+    "static/js/main.fa807582.js"
   ]
 }
