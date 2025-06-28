@@ -345,11 +345,7 @@
 <script>
 let geojsonEcoregions = null;
 async function carregarGeojson() {
-<<<<<<< HEAD
-  const res = await fetch('public/wwf_terr_ecos.geojson');
-=======
-  const res = await fetch('/data/wwf_terr_ecos.geojson');
->>>>>>> c0bbc95 (Spull)
+  const res = await fetch('data/wwf_terr_ecos.geojson');
   geojsonEcoregions = await res.json();
 }
 carregarGeojson();
