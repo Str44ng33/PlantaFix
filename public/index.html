@@ -345,7 +345,7 @@
 <script>
 let geojsonEcoregions = null;
 async function carregarGeojson() {
-  const res = await fetch('/wwf_terr_ecos.geojson');
+  const res = await fetch('public/wwf_terr_ecos.geojson');
   geojsonEcoregions = await res.json();
 }
 carregarGeojson();
