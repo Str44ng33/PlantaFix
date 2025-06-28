@@ -308,6 +308,7 @@
 </style>
 
 </head>
+<div id="root"></div>
 <body style="margin:0;background:#000;color:#fff;font-family:'M PLUS Code Latin',monospace;min-height:100vh">
 
 <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
@@ -344,11 +345,11 @@
 <script>
 let geojsonEcoregions = null;
 async function carregarGeojson() {
-  const res = await fetch('/wwf_terr_ecos.geojson');
+  const res = await fetch('/data/wwf_terr_ecos.geojson');
   geojsonEcoregions = await res.json();
 }
 carregarGeojson();
-
+  
 function normalize(s) {
   return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 }
