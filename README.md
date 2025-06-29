@@ -1,1 +1,1 @@
-![fot](https://youtu.be/ogwpGGrIeKw)
+[foto](https://youtu.be/ogwpGGrIeKw)
