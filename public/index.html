@@ -6,117 +6,111 @@
   <style>
   :root {
     --green: #39FF14;
-    --bg-color: #000;
-    --card-bg: rgba(20,20,20,0.6);
-    --text-light: #fff;
-    --text-muted: #bbb;
+    --bg1: #0a0a0a;
+    --bg2: #1a1a1a;
+    --card-bg: rgba(20,20,20,0.7);
+    --text-light: #eee;
+    --text-muted: #888;
     --radius: 12px;
     --gap: 16px;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
   body {
-    background: linear-gradient(270deg, #000, #111, #000);
-    background-size: 600% 600%;
-    animation: bgShift 20s ease infinite;
+    background: radial-gradient(circle at top left, #111, #000);
     color: var(--text-light);
     font-family: 'M PLUS Code Latin', monospace;
     min-height: 100vh;
-  }
-
-  @keyframes bgShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: var(--gap);
   }
 
   .container {
+    width: 100%;
     max-width: 900px;
-    margin: auto;
-    padding: var(--gap);
-    backdrop-filter: blur(8px);
-    background: rgba(0,0,0,0.5);
+    background: var(--bg1);
     border-radius: var(--radius);
-    animation: fadeIn 1s ease forwards;
+    padding: calc(var(--gap)*2);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+    animation: fadeIn 0.8s ease;
   }
 
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   .header {
     text-align: center;
     margin-bottom: calc(var(--gap)*2);
-    animation: neonGlow 2s ease-in-out infinite alternate;
-  }
-
-  @keyframes neonGlow {
-    from { text-shadow: 0 0 4px var(--green); }
-    to { text-shadow: 0 0 16px var(--green), 0 0 32px var(--green); }
   }
 
   .header img {
-    width: 100px; height: 100px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     filter: drop-shadow(0 0 8px var(--green));
-    animation: pulse 2s infinite;
+    animation: pulse 2s infinite ease-in-out;
   }
 
   @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+    0%,100% { transform: scale(1); }
+    50%     { transform: scale(1.1); }
   }
 
   .header h1 {
     color: var(--green);
-    font-size: 3rem;
-    margin-top: 8px;
+    font-size: 2.8rem;
+    margin: var(--gap) 0 0.5rem;
   }
 
   .header p {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
     max-width: 600px;
-    margin: 8px auto 0;
+    margin: 0 auto;
   }
 
   .search-area {
-    display: flex; flex-wrap: wrap;
-    justify-content: center; gap: var(--gap);
-    margin-bottom: var(--gap);
-    animation: slideIn 0.8s ease-out;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--gap);
+    margin-bottom: calc(var(--gap)*2);
   }
 
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateX(-30px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  .search-area input, .search-area button {
+  .search-area input {
     padding: 12px 16px;
-    border: none;
+    background: var(--bg2);
+    color: var(--text-light);
+    border: 1px solid var(--green);
     border-radius: var(--radius);
     font-size: 1rem;
     outline: none;
-    backdrop-filter: blur(4px);
-    background: rgba(0,0,0,0.4);
-    color: var(--text-light);
-    transition: all .3s ease;
+    transition: box-shadow .3s;
   }
 
-  .search-area input:hover, .search-area input:focus {
-    background: rgba(0,0,0,0.6);
+  .search-area input:focus {
     box-shadow: 0 0 8px var(--green);
   }
 
   .search-area button {
+    padding: 12px 24px;
     background: var(--green);
     color: #000;
+    border: none;
+    border-radius: var(--radius);
     font-weight: bold;
     cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
   }
 
   .search-area button:hover {
@@ -129,64 +123,57 @@
   }
 
   .species-block {
-    display: flex; flex-wrap: wrap;
-    align-items: center; gap: var(--gap);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--gap);
     margin-top: var(--gap);
-    animation: fadeIn 1s ease forwards;
   }
 
   .species-block img {
-    flex: 0 0 180px; height: 120px;
+    width: 180px;
+    height: 120px;
     object-fit: cover;
     border-radius: var(--radius);
     box-shadow: 0 4px 12px rgba(0,255,20,0.4);
-    animation: zoomIn 0.6s ease forwards;
-  }
-
-  @keyframes zoomIn {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
   }
 
   .links-uteis {
-    margin-top: calc(var(--gap) * 2);
+    margin-top: calc(var(--gap)*2);
   }
 
   .links-uteis h3 {
     color: var(--green);
-    margin-bottom: 8px;
+    font-size: 1.2rem;
+    margin-bottom: var(--gap);
     position: relative;
   }
 
   .links-uteis h3::after {
     content: '';
     position: absolute;
-    left: 0; bottom: -4px;
-    height: 2px; width: 50px;
+    left: 0;
+    bottom: -4px;
+    width: 40px;
+    height: 2px;
     background: var(--green);
-    animation: expand 1s ease infinite alternate;
-  }
-
-  @keyframes expand {
-    from { width: 20px; }
-    to { width: 50px; }
   }
 
   .links-uteis a {
-    display: block;
+    display: inline-block;
+    margin: 6px 0;
     color: var(--green);
     text-decoration: none;
-    margin: 6px 0;
-    transition: color .3s, transform .3s;
+    font-weight: bold;
+    transition: transform .2s;
   }
 
   .links-uteis a:hover {
-    color: #fff;
-    transform: translateX(6px);
+    transform: translateX(4px);
   }
 
   .cards-area {
-    margin-top: calc(var(--gap) * 2);
+    margin-top: calc(var(--gap)*2);
   }
 
   #cards {
@@ -197,46 +184,27 @@
 
   .card {
     background: var(--card-bg);
+    border: 1px solid var(--green);
     border-radius: var(--radius);
     padding: var(--gap);
-    position: relative;
-    overflow: hidden;
     backdrop-filter: blur(6px);
-    border: 1px solid var(--green);
-    transition: transform .3s ease, box-shadow .3s ease;
-  }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: radial-gradient(circle at center, rgba(57,255,20,0.15), transparent 60%);
-    transform: rotate(25deg);
-    opacity: 0;
-    transition: opacity .3s ease;
-  }
-
-  .card:hover::before {
-    opacity: 1;
+    transition: transform .2s, box-shadow .2s;
   }
 
   .card:hover {
-    transform: translateY(-8px) scale(1.03);
+    transform: translateY(-6px);
     box-shadow: 0 8px 20px rgba(0,255,20,0.4);
   }
 
   .card strong {
-    display: block;
-    font-size: 1.1rem;
-    margin-bottom: 8px;
     color: var(--green);
+    font-size: 1.1rem;
   }
 
   .card em {
-    display: block;
-    font-style: normal;
     color: var(--text-muted);
+    font-style: normal;
+    margin-top: 4px;
   }
 
   #toggleCards {
@@ -247,45 +215,65 @@
     color: #000;
     border: none;
     border-radius: var(--radius);
-    cursor: pointer;
     font-weight: bold;
-    transition: background .3s, transform .3s;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
   }
 
   #toggleCards:hover {
-    background: #7fff5b;
     transform: scale(1.05);
+    box-shadow: 0 0 12px var(--green);
   }
 
   footer {
     text-align: center;
     color: var(--text-muted);
     font-size: 0.8rem;
-    margin: calc(var(--gap) * 2) 0;
-    opacity: 0.8;
+    margin: calc(var(--gap)*2) 0 0;
+  }
+
+  #filter {
+    width: 100%;
+    padding: 12px 16px;
+    margin: var(--gap) 0;
+    background: var(--bg2);
+    color: var(--text-light);
+    border: 1px solid var(--green);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow .3s, background .3s;
+  }
+
+  #filter:hover,
+  #filter:focus {
+    background: rgba(0,0,0,0.6);
+    box-shadow: 0 0 8px var(--green);
   }
 
   #loadingOverlay {
-    position: fixed; top:0; left:0; right:0; bottom:0;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0,0,0,0.8);
-    display: flex; align-items: center; justify-content: center;
-    visibility: hidden; opacity:0; transition: opacity .3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s ease;
     z-index: 9999;
   }
 
   #loadingOverlay.visible {
-    visibility: visible; opacity:1;
-    animation: blink 1s ease infinite;
-  }
-
-  @keyframes blink {
-    0%,100% { opacity: 1; }
-    50% { opacity: 0.4; }
+    visibility: visible;
+    opacity: 1;
   }
 
   .spinner {
-    width: 60px; height: 60px;
-    border: 8px solid #333; border-top-color: var(--green);
+    width: 60px;
+    height: 60px;
+    border: 8px solid #333;
+    border-top-color: var(--green);
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }
@@ -298,108 +286,78 @@
     color: var(--green);
     font-weight: bold;
     margin-left: 12px;
-    animation: slideInText 1s ease;
   }
-
-  @keyframes slideInText {
-    from { opacity: 0; transform: translateX(-20px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-</style>
-
+  </style>
 </head>
-<div id="root"></div>
-<body style="margin:0;background:#000;color:#fff;font-family:'M PLUS Code Latin',monospace;min-height:100vh">
-
+<body>
 <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
-
 <div id="loadingOverlay">
   <div class="spinner"></div><div class="text">Carregando…</div>
 </div>
-
-<div style="padding:20px;max-width:800px;margin:0 auto">
-  <div style="text-align:center;margin-bottom:20px">
-    <img src="https://i.imgur.com/2DgMrXb.png" alt="Logo" style="width:120px;height:120px;border-radius:50%;filter:drop-shadow(0 0 8px #39FF14)" />
-    <h1 style="color:#39FF14;font-size:2.5rem;margin:10px 0">Plantafix</h1>
-    <p style="font-size:0.9rem;color:#777;max-width:600px;margin:8px auto">
-      Este site é um projeto de feira de ciências, no qual o usuário informa a doença ou sintoma que possui e o site retornará uma planta que pode curar ou tratar essa condição. Nossas fontes de pesquisa são da Wikipédia e PubMed.
-    </p>
+<div class="container">
+  <div class="header">
+    <img src="https://i.imgur.com/2tirOX5.png" alt="Logo" />
+    <h1>Plantafix</h1>
+    <p>Este site é um projeto de feira de ciências, no qual o usuário informa a doença ou sintoma que possui e o site retornará uma planta que pode curar ou tratar essa condição. Nossas fontes de pesquisa são da Wikipédia e PubMed.</p>
   </div>
-  <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:20px">
-    <input id="doenca" placeholder="Como podemos te ajudar hoje?" style="padding:8px;width:200px;border-radius:8px;background:#333;color:#fff;border:1px solid #39FF14" />
-    <button id="buscar" style="padding:8px 16px;border-radius:8px;background:#39FF14;border:none;color:#000;font-weight:bold;cursor:pointer">Buscar</button>
+  <div class="search-area">
+    <input id="doenca" placeholder="Como podemos te ajudar hoje?" />
+    <button id="buscar">Buscar</button>
   </div>
-  <div id="resultado" style="text-align:left"></div>
+  <div id="resultado"></div>
+  <div class="cards-area">
+    <input id="filter" placeholder="Consulte o dicionário Plantafix!" />
+    <div id="cards"></div>
+    <button id="toggleCards">Mostrar mais</button>
+  </div>
+  <footer>Site criado por Matheus, Thalita e Heitor</footer>
 </div>
-
-<div style="padding:20px;max-width:800px;margin:40px auto">
-  <input id="filter" placeholder="Consulte o dicionário Plantafix!" style="padding:8px;width:100%;border-radius:8px;background:#333;color:#fff;border:1px solid #39FF14" />
-  <div id="cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:20px"></div>
-  <button id="toggleCards" style="margin-top:20px;padding:10px;border:none;border-radius:8px;background:#39FF14;color:#000;font-weight:bold;cursor:pointer">Mostrar mais</button>
-</div>
-
-<footer style="text-align:center;margin:40px 0;color:#666">
-  Site criado por Matheus, Thalita e Heitor
-</footer>
-
 <script>
+const doencasEPlantas = {"Artrite":"Salix alba","Asma":"Eucalyptus globulus","Câncer":"Withania somnifera","Catarro":"Tussilago farfara","Diabetes":"Gymnema sylvestre","Insônia":"Valeriana officinalis","Dor de cabeça":"Mentha piperita","Hipertensão":"Allium sativum","Gripes":"Echinacea purpurea","Resfriado":"Echinacea purpurea","Dores musculares":"Arnica montana","Depressão":"Hypericum perforatum","Gastrite":"Zingiber officinale","Problemas digestivos":"Cuminum cyminum","Tensão nervosa":"Lavandula angustifolia","Úlcera gástrica":"Cichorium intybus","Cólica menstrual":"Angelica sinensis","Candidíase":"Cucumis sativus","Colesterol alto":"Panax ginseng","Dores de estômago":"Matricaria chamomilla","Dor de dente":"Syzygium aromaticum","Infecções urinárias":"Vaccinium macrocarpo","Problemas respiratórios":"Thymus vulgaris","Enxaqueca":"Tanacetum parthenium","Azia":"Cucumis melo","Queimaduras":"Aloe vera","Anemia":"Trifolium pratense","Infecção de garganta":"Salvia officinalis","Dores nas articulações":"Boswellia serrata","Bronquite":"Althaea officinalis","Eczema":"Calendula officinalis","Câncer de fígado":"Andrographis paniculata","Hemorroidas":"Hamamelis virginiana","Vermes intestinais":"Chenopodium ambrosioides","Diarreia":"Coptis chinensis","Constipação":"Rheum officinale","Cálculos renais":"Asparagus racemosus","Hipotireoidismo":"Coleus forskohlii","Pele seca":"Cocos nucifera","Infecção de ouvido":"Echinacea purpurea","Amigdalite":"Melissa officinalis","Hemorragias":"Achillea millefolium","Alzheimer":"Ginkgo biloba","Cálculos biliares":"Taraxacum officinale","Tontura":"Zingiber officinale","Náuseas":"Mentha spicata","Febre":"Tilia cordata","Hipoglicemia":"Momordica charantia","Fadiga":"Eleutherococcus senticosus","Infecção de pele":"Chamaecyparis obtusa","Tosse":"Cinnamomum verum","Queda de cabelo":"Trigonella foenum-graecum","Alergia":"Nicotiana tabacum","Desidratação":"Cucumis sativus","Úlcera péptica":"Myrtus communis","Cistos ovarianos":"Vitex agnus-castus","Pneumonia":"Eucalyptus citriodora","Aftas":"Sanguinaria canadensis","Rinite alérgica":"Allium cepa","Pedra nos rins":"Tribulus terrestris","Acne":"Azadirachta indica","Psoríase":"Vitis vinifera","Hepatite":"Silybum marianum","Alergias alimentares":"Bromelain","Varizes":"Ruscus aculeatus","Obesidade":"Camellia sinensis","Candidíase oral":"Cinnamomum zeylanicum","Anorexia":"Glycyrrhiza glabra","Gripe suína":"Eucalyptus globulus","Tensão alta":"Hibiscus sabdariffa","Dores nas costas":"Capsicum annuum","Cistite":"Orthosiphon aristatus","Infecções bacterianas":"Berberis vulgaris","Úlceras na boca":"Carya ovata","Gota":"Prunus cerasus","Anemia ferropriva":"Trigonella foenum-graecum","Vermes":"Cucurbita pepo","Câncer de mama":"Curcuma longa","Câncer de pulmão":"Crataegus monogyna","Espirros":"Urtica dioica","Rugas":"Hibiscus rosa-sinensis","Lúpus":"Corydalis yanhusuo","Hipotensão":"Panax ginseng","Estresse":"Passiflora incarnata","Sinusite":"Cinnamomum zeylanicum","Hemorroidas internas":"Aesculus hippocastanum","Malária":"Artemisia annua","Hipocalcemia":"Ostrea edulis","Síndrome do intestino irritável":"Mentha piperita","Cálculos vesiculares":"Chanca Piedra","Dor crônica":"Cannabis sativa","Náusea e vômito":"Cannabis sativa","Epilepsia":"Cannabis sativa","Ansiedade":"Cannabis sativa","PTSD":"Cannabis sativa","Glaucoma":"Cannabis sativa","Esclerose múltipla":"Cannabis sativa","Distúrbios do sono":"Cannabis sativa","Infecção por fungos":"Tabebuia impetiginosa","Infecção intestinal":"Psidium guajava","Fígado gorduroso":"Cynara scolymus","Baixa imunidade":"Uncaria tomentosa","Herpes labial":"Melissa officinalis","Tireoidite de Hashimoto":"Nigella sativa","Alergia de pele":"Avena sativa","Retenção de líquidos":"Taraxacum officinale","Refluxo ácido":"Foeniculum vulgare","Infecção por H. pylori":"Brassica oleracea","TPM":"Vitex agnus-castus","Infecção fúngica vaginal":"Melaleuca alternifolia","Coceira na pele":"Hamamelis virginiana","Feridas na pele":"Symphytum officinale","Mau hálito":"Petroselinum crispum","Baixa libido":"Lepidium meyenii","Memória fraca":"Bacopa monnieri","Dores de ouvido":"Allium sativum","Dermatite":"Aloe vera","Vaginose bacteriana":"Borago officinalis","Menopausa":"Glycine max","Cólicas intestinais":"Mentha × piperita","Estômago irritado":"Ulmus rubra","Zumbido no ouvido":"Ginkgo biloba","Inflamação crônica":"Curcuma longa","Problemas de próstata":"Serenoa repens","Infecção por Candida":"Origanum vulgare","Falta de apetite":"Gentiana lutea","Inflamação da bexiga":"Arctostaphylos uva-ursi","Oleosidade":"Melaleuca alternifolia","Manchas na pele":"Rosa rubiginosa","Feridas":"Symphytum officinale","Queimaduras solares":"Aloe vera","Coceiras":"Hamamelis virginiana","Pele envelhecida":"Hibiscus rosa-sinensis","Pele inflamada":"Arctium lappa","Irritação na pele":"Matricaria chamomilla","Flacidez facial":"Centella asiatica","Cicatrizes de acne":"Lactuca sativa"};
+
 let geojsonEcoregions = null;
-
 async function carregarGeoJSON() {
-  if (geojsonEcoregions) return;
-
-  try {
-    const url = '/data/wwf_terr_ecos_part1_split_4.geojson';
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`Erro ${res.status} ao carregar ${url}`);
-    const geojson = await res.json();
-
-    geojsonEcoregions = geojson;
-    console.log('só avisando que o geojson foi carregado deboas', geojsonEcoregions);
-  } catch (err) {
-    console.error('Deu merda no geojson, fudeu aqui:', err);
-  }
+  const url = '/data/wwf_terr_ecos_part1_split_4.geojson';
+  const res = await fetch(url);
+  const geojson = await res.json();
+  geojsonEcoregions = geojson;
 }
-
 carregarGeoJSON();
 
 function normalize(s) {
   return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 }
 
-
-const doencasEPlantas = {"Artrite":"Salix alba","Asma":"Eucalyptus globulus","Câncer":"Withania somnifera","Catarro":"Tussilago farfara","Diabetes":"Gymnema sylvestre","Insônia":"Valeriana officinalis","Dor de cabeça":"Mentha piperita","Hipertensão":"Allium sativum","Gripes":"Echinacea purpurea","Resfriado":"Echinacea purpurea","Dores musculares":"Arnica montana","Depressão":"Hypericum perforatum","Gastrite":"Zingiber officinale","Problemas digestivos":"Cuminum cyminum","Tensão nervosa":"Lavandula angustifolia","Úlcera gástrica":"Cichorium intybus","Cólica menstrual":"Angelica sinensis","Candidíase":"Cucumis sativus","Colesterol alto":"Panax ginseng","Dores de estômago":"Matricaria chamomilla","Dor de dente":"Syzygium aromaticum","Infecções urinárias":"Vaccinium macrocarpon","Problemas respiratórios":"Thymus vulgaris","Enxaqueca":"Tanacetum parthenium","Azia":"Cucumis melo","Queimaduras":"Aloe vera","Anemia":"Trifolium pratense","Infecção de garganta":"Salvia officinalis","Dores nas articulações":"Boswellia serrata","Bronquite":"Althaea officinalis","Eczema":"Calendula officinalis","Câncer de fígado":"Andrographis paniculata","Hemorroidas":"Hamamelis virginiana","Vermes intestinais":"Chenopodium ambrosioides","Diarreia":"Coptis chinensis","Constipação":"Rheum officinale","Cálculos renais":"Asparagus racemosus","Hipotireoidismo":"Coleus forskohlii","Pele seca":"Cocos nucifera","Infecção de ouvido":"Echinacea purpurea","Amigdalite":"Melissa officinalis","Hemorragias":"Achillea millefolium","Alzheimer":"Ginkgo biloba","Cálculos biliares":"Taraxacum officinale","Tontura":"Zingiber officinale","Náuseas":"Mentha spicata","Febre":"Tilia cordata","Hipoglicemia":"Momordica charantia","Fadiga":"Eleutherococcus senticosus","Infecção de pele":"Chamaecyparis obtusa","Tosse":"Cinnamomum verum","Queda de cabelo":"Trigonella foenum-graecum","Alergia":"Nicotiana tabacum","Desidratação":"Cucumis sativus","Úlcera péptica":"Myrtus communis","Cistos ovarianos":"Vitex agnus-castus","Pneumonia":"Eucalyptus citriodora","Aftas":"Sanguinaria canadensis","Rinite alérgica":"Allium cepa","Pedra nos rins":"Tribulus terrestris","Acne":"Azadirachta indica","Psoríase":"Vitis vinifera","Hepatite":"Silybum marianum","Alergias alimentares":"Bromelain","Varizes":"Ruscus aculeatus","Obesidade":"Camellia sinensis","Candidíase oral":"Cinnamomum zeylanicum","Anorexia":"Glycyrrhiza glabra","Gripe suína":"Eucalyptus globulus","Tensão alta":"Hibiscus sabdariffa","Dores nas costas":"Capsicum annuum","Cistite":"Orthosiphon aristatus","Infecções bacterianas":"Berberis vulgaris","Úlceras na boca":"Carya ovata","Gota":"Prunus cerasus","Anemia ferropriva":"Trigonella foenum-graecum","Vermes":"Cucurbita pepo","Câncer de mama":"Curcuma longa","Câncer de pulmão":"Crataegus monogyna","Espirros":"Urtica dioica","Rugas":"Hibiscus rosa-sinensis","Lúpus":"Corydalis yanhusuo","Hipotensão":"Panax ginseng","Estresse":"Passiflora incarnata","Sinusite":"Cinnamomum zeylanicum","Hemorroidas internas":"Aesculus hippocastanum","Malária":"Artemisia annua","Hipocalcemia":"Ostrea edulis","Síndrome do intestino irritável":"Mentha piperita","Cálculos vesiculares":"Chanca Piedra","Dor crônica":"Cannabis sativa","Náusea e vômito":"Cannabis sativa","Epilepsia":"Cannabis sativa","Ansiedade":"Cannabis sativa","PTSD":"Cannabis sativa","Glaucoma":"Cannabis sativa","Esclerose múltipla":"Cannabis sativa","Distúrbios do sono":"Cannabis sativa","Infecção por fungos":"Tabebuia impetiginosa","Infecção intestinal":"Psidium guajava","Fígado gorduroso":"Cynara scolymus","Baixa imunidade":"Uncaria tomentosa","Herpes labial":"Melissa officinalis","Tireoidite de Hashimoto":"Nigella sativa","Alergia de pele":"Avena sativa","Retenção de líquidos":"Taraxacum officinale","Refluxo ácido":"Foeniculum vulgare","Infecção por H. pylori":"Brassica oleracea","TPM":"Vitex agnus-castus","Infecção fúngica vaginal":"Melaleuca alternifolia","Coceira na pele":"Hamamelis virginiana","Feridas na pele":"Symphytum officinale","Mau hálito":"Petroselinum crispum","Baixa libido":"Lepidium meyenii","Memória fraca":"Bacopa monnieri","Dores de ouvido":"Allium sativum","Dermatite":"Aloe vera","Vaginose bacteriana":"Borago officinalis","Menopausa":"Glycine max","Cólicas intestinais":"Mentha × piperita","Estômago irritado":"Ulmus rubra","Zumbido no ouvido":"Ginkgo biloba","Inflamação crônica":"Curcuma longa","Problemas de próstata":"Serenoa repens","Infecção por Candida":"Origanum vulgare","Falta de apetite":"Gentiana lutea","Inflamação da bexiga":"Arctostaphylos uva-ursi","Oleosidade":"Melaleuca alternifolia","Manchas na pele":"Rosa rubiginosa","Feridas":"Symphytum officinale","Queimaduras solares":"Aloe vera","Coceiras":"Hamamelis virginiana","Pele envelhecida":"Hibiscus rosa-sinensis","Pele inflamada":"Arctium lappa","Irritação na pele":"Matricaria chamomilla","Flacidez facial":"Centella asiatica","Cicatrizes de acne":"Lactuca sativa"};
-
-async function fetchSpecies(name){
+async function fetchSpecies(name) {
   const r = await fetch(`https://api.gbif.org/v1/species/match?name=${encodeURIComponent(name)}`);
   const j = await r.json();
   return j.usageKey ? [{name:j.canonicalName,status:j.status}] : [];
 }
 
-function tryWiki(lang){
-  return async name=>{
+function tryWiki(lang) {
+  return async name => {
     const res = await fetch(`https://${lang}.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(name)}&prop=extracts&exintro=true&explaintext=true&format=json&origin=*`);
     const j = await res.json();
     const p = j.query.pages[Object.keys(j.query.pages)[0]];
     if(!p.extract) throw '';
     return p.extract;
-  }
+  }; 
 }
 
-async function fetchDescription(name){
-  for(const fn of [tryWiki('pt'),tryWiki('es'),tryWiki('en')]){
-    try{ const txt = await fn(name); if(txt) return txt; } catch {}
+async function fetchDescription(name) {
+  for(const fn of [tryWiki('pt'), tryWiki('es'), tryWiki('en')]) {
+    try { const txt = await fn(name); if(txt) return txt; } catch {}
   }
   return 'Descrição não disponível.';
 }
 
-async function translateText(text){
+async function translateText(text) {
   const r = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=pt&dt=t&q=${encodeURIComponent(text)}`);
   const j = await r.json();
   return j[0].map(p=>p[0]).join('');
 }
 
-async function fetchPubMed(term){
+async function fetchPubMed(term) {
   const s = await fetch(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${encodeURIComponent(term)}&retmax=1&retmode=json`);
   const sj = await s.json(); const id = sj.esearchresult.idlist[0];
   if(!id) return null;
@@ -410,16 +368,15 @@ async function fetchPubMed(term){
   return {title,author,titlePt,authorPt,link};
 }
 
-async function detectarEcoregion(planta){
-  if(!geojsonEcoregions) await carregarGeojson();
+async function detectarEcoregion(planta) {
+  if(!geojsonEcoregions) await carregarGeoJSON();
   const resp = await fetch(`https://api.gbif.org/v1/occurrence/search?scientificName=${encodeURIComponent(planta)}&limit=20`);
   const data = await resp.json();
-  const pontos = data.results.filter(r=>r.decimalLatitude&&r.decimalLongitude)
-    .map(r=>turf.point([r.decimalLongitude,r.decimalLatitude]));
+  const pontos = data.results.filter(r=>r.decimalLatitude&&r.decimalLongitude).map(r=>turf.point([r.decimalLongitude,r.decimalLatitude]));
   if(!pontos.length) return 'Sem dados de ocorrência';
-  for(const ponto of pontos){
-    for(const feat of geojsonEcoregions.features){
-      if(turf.booleanPointInPolygon(ponto,feat)){
+  for(const ponto of pontos) {
+    for(const feat of geojsonEcoregions.features) {
+      if(turf.booleanPointInPolygon(ponto,feat)) {
         return feat.properties.ECO_NAME||feat.properties.BIOME||'Bioma desconhecido';
       }
     }
@@ -427,30 +384,50 @@ async function detectarEcoregion(planta){
   return 'Bioma não identificado';
 }
 
-async function traduzirBioma(bioma){
+async function traduzirBioma(bioma) {
   const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=pt&dt=t&q=${encodeURIComponent(bioma)}`);
   const data = await res.json();
   return data[0][0][0];
 }
+async function searchWikiPage(term) {
+  const url = `https://pt.wikipedia.org/w/api.php?` +
+    `action=query&list=search&srsearch=${encodeURIComponent(term)}` +
+    `&format=json&origin=*`;
+  const res = await fetch(url);
+  const j = await res.json();
+  const first = j.query.search[0];
+  return first ? first.title : null;
+}
+
+async function fetchBiomeSummaryAndImage(biomeTitle) {
+  if (!biomeTitle) return { extract: 'Resumo não disponível.', thumbnail: null };
+  const url = `https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(biomeTitle)}`;
+  const res = await fetch(url);
+  if (!res.ok) return { extract: 'Resumo não disponível.', thumbnail: null };
+  const json = await res.json();
+  return {
+    extract: json.extract || 'Resumo não disponível.',
+    thumbnail: json.thumbnail?.source || null
+  };
+}
+
 
 let showAll = false;
-function renderCards(filter=''){
+function renderCards(filter='') {
   const c = document.getElementById('cards'); c.innerHTML = '';
   const f = normalize(filter);
-  let items = Object.entries(doencasEPlantas)
-    .filter(([d,p])=>normalize(d).includes(f)||normalize(p).includes(f));
+  let items = Object.entries(doencasEPlantas).filter(([d,p])=>normalize(d).includes(f)||normalize(p).includes(f));
   items = showAll?items:items.slice(0,18);
-  for(const [d,p] of items){
+  for(const [d,p] of items) {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `<strong>${d}</strong><br/><em>${p}</em>`;
     c.appendChild(card);
   }
 }
-
-document.getElementById('filter').addEventListener('input',e=>renderCards(e.target.value));
-document.getElementById('toggleCards').addEventListener('click',()=>{
-  showAll=!showAll;
+document.getElementById('filter').addEventListener('input', e=>renderCards(e.target.value));
+document.getElementById('toggleCards').addEventListener('click', ()=>{
+  showAll = !showAll;
   document.getElementById('toggleCards').textContent = showAll?'Mostrar menos':'Mostrar mais';
   renderCards(document.getElementById('filter').value);
 });
@@ -460,58 +437,85 @@ const overlay = document.getElementById('loadingOverlay');
 const showLoading = ()=>overlay.classList.add('visible');
 const hideLoading = ()=>overlay.classList.remove('visible');
 
-document.getElementById('buscar').addEventListener('click',async()=>{
+document.getElementById('buscar').addEventListener('click', async ()=>{
   showLoading();
   const inp = document.getElementById('doenca').value.trim();
   const key = Object.keys(doencasEPlantas).find(k=>normalize(k)===normalize(inp));
-  const planta = key?doencasEPlantas[key]:null;
+  const planta = key? doencasEPlantas[key] : null;
   const out = document.getElementById('resultado');
   out.innerHTML = '';
-  if(!planta){
+  if(!planta) {
     hideLoading();
     out.textContent = 'Não encontramos uma planta pra isso.';
     return;
   }
-  const [sp,desc,pm] = await Promise.all([fetchSpecies(planta),fetchDescription(planta),fetchPubMed(planta)]);
+  const [sp, desc, pm] = await Promise.all([fetchSpecies(planta), fetchDescription(planta), fetchPubMed(planta)]);
   const descPt = await translateText(desc);
   let imgUrl = null;
-  if(sp.length){
+  if(sp.length) {
     const w = await fetch(`https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(sp[0].name)}`);
     const wj = await w.json();
-    imgUrl = wj.thumbnail?.source||null;
+    imgUrl = wj.thumbnail?.source || null;
   }
   out.innerHTML = `
     <p>Planta recomendada pra <strong>${key}</strong>: <em>${planta}</em></p>
     <div class="species-block">
       <div>
-        <h3 style="color:#39FF14">Espécie encontrada</h3>
+        <h3 style="color:var(--green)">Espécie encontrada</h3>
         <ul>${sp.map(s=>`<li><strong>${s.name}</strong> (${s.status})</li>`).join('')}</ul>
       </div>
-      ${imgUrl?`<img class="card-img" src="${imgUrl}" alt="${sp[0].name}" />`:''}
+      ${imgUrl?`<img src="${imgUrl}" style="width:180px;height:120px;border-radius:var(--radius);object-fit:cover">`:``}
     </div>
-    <h3 style="color:#39FF14;margin-top:20px">Descrição</h3>
+    <h3 style="color:var(--green);margin-top:20px">Descrição</h3>
     <p>${descPt}</p>
   `;
-  if(pm){
-    out.innerHTML += `
-      <div style="margin-top:20px;padding:16px;background:#111;border-radius:8px">
-        <h3 style="color:#39FF14">Artigo PubMed</h3>
-        <p><strong>Título:</strong> ${pm.titlePt} <em>(${pm.title})</em></p>
-        <p><strong>Autor:</strong> ${pm.authorPt} <em>(${pm.author})</em></p>
-        <a href="${pm.link}" target="_blank" style="color:#39FF14">Leia no PubMed</a>
-      </div>
-    `;
-  }
   const eco = await detectarEcoregion(sp[0].name);
   const ecoPt = await traduzirBioma(eco);
-  out.innerHTML += `<p style="margin-top:12px;color:#39FF14">Bioma detectado: ${ecoPt}</p>`;
+
+  let biomaImg = null;
+  const trySummary = async (lang, title) => {
+    const slug = title.replace(/\s+/g, '_');
+    const res = await fetch(
+      `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(slug)}`
+    );
+    if (!res.ok) throw new Error(`no_${lang}`);
+    const json = await res.json();
+    return json.thumbnail?.source || null;
+  };
+
+  try {
+    biomaImg = await trySummary('pt', ecoPt);
+  } catch {
+    try {
+      biomaImg = await trySummary('en', eco);  
+    } catch {
+      biomaImg = null;
+    }
+  }
+
+  out.innerHTML += `
+    <div style="display:flex;align-items:center;gap:16px;margin-top:16px">
+      ${biomaImg
+        ? `<img src="${biomaImg}" style="
+             width:120px;
+             height:80px;
+             border-radius:8px;
+             object-fit:cover;
+             box-shadow:0 4px 8px rgba(0,255,20,0.4);
+           " alt="${ecoPt}" />`
+        : ``}
+      <p style="color:var(--green);margin:0;font-weight:bold">
+        Bioma detectado: ${ecoPt}
+      </p>
+    </div>
+  `;
   out.innerHTML += `
     <div style="margin-top:30px">
-      <h3 style="color:#39FF14">Links Úteis</h3>
-      <a href="https://www.google.com/maps/search/plantas+perto+de+mim" target="_blank" style="display:block;color:#39FF14;text-decoration:underline;margin:6px 0">
+      <h3 style="color:var(--green)">Links Úteis</h3>
+      <a href="https://www.google.com/maps/search/plantas+perto+de+mim" target="_blank" style="display:block;color:var(--green);text-decoration:underline;margin:6px 0">
         Lugares perto de mim pra adquirir plantas
       </a>
-      <a href="https://www.youtube.com/results?search_query=como+cultivar+${encodeURIComponent(planta)}" target="_blank" style="display:block;color:#39FF14;text-decoration:underline;margin:6px 0">
+      <a href="https://www.youtube.com/results?search_query=como+cultivar+${encodeURIComponent(planta)}" target="_blank" style="display:block;color:var(--green);text-decoration:underline;margin:6px 0">
         Como cultivar ${planta}
       </a>
     </div>
@@ -521,4 +525,3 @@ document.getElementById('buscar').addEventListener('click',async()=>{
 </script>
 </body>
 </html>
-
