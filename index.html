@@ -317,7 +317,7 @@ const doencasEPlantas = {"Artrite":"Salix alba","Asma":"Eucalyptus globulus","CÃ
 
 let geojsonEcoregions = null;
 async function carregarGeoJSON() {
-  const url = '/data/wwf_terr_ecos_part1_split_4.geojson';
+  const url = 'https://str44ng33.github.io/PlantaFix/data/wwf_terr_ecos_part1_split_4.geojson';
   const res = await fetch(url);
   const geojson = await res.json();
   geojsonEcoregions = geojson;
