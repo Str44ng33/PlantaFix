@@ -326,7 +326,7 @@
     </p>
   </div>
   <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:20px">
-    <input id="doenca" placeholder="Digite a doença aqui..." style="padding:8px;width:200px;border-radius:8px;background:#333;color:#fff;border:1px solid #39FF14" />
+    <input id="doenca" placeholder="Como podemos te ajudar hoje?" style="padding:8px;width:200px;border-radius:8px;background:#333;color:#fff;border:1px solid #39FF14" />
     <button id="buscar" style="padding:8px 16px;border-radius:8px;background:#39FF14;border:none;color:#000;font-weight:bold;cursor:pointer">Buscar</button>
   </div>
   <div id="resultado" style="text-align:left"></div>
@@ -344,15 +344,29 @@
 
 <script>
 let geojsonEcoregions = null;
-async function carregarGeojson() {
-  const res = await fetch('data/wwf_terr_ecos.geojson');
-  geojsonEcoregions = await res.json();
+
+async function carregarGeoJSON() {
+  if (geojsonEcoregions) return;
+
+  try {
+    const url = '/data/wwf_terr_ecos_part1_split_4.geojson';
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Erro ${res.status} ao carregar ${url}`);
+    const geojson = await res.json();
+
+    geojsonEcoregions = geojson;
+    console.log('só avisando que o geojson foi carregado deboas', geojsonEcoregions);
+  } catch (err) {
+    console.error('Deu merda no geojson, fudeu aqui:', err);
+  }
 }
-carregarGeojson();
-  
+
+carregarGeoJSON();
+
 function normalize(s) {
-  return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 }
+
 
 const doencasEPlantas = {"Artrite":"Salix alba","Asma":"Eucalyptus globulus","Câncer":"Withania somnifera","Catarro":"Tussilago farfara","Diabetes":"Gymnema sylvestre","Insônia":"Valeriana officinalis","Dor de cabeça":"Mentha piperita","Hipertensão":"Allium sativum","Gripes":"Echinacea purpurea","Resfriado":"Echinacea purpurea","Dores musculares":"Arnica montana","Depressão":"Hypericum perforatum","Gastrite":"Zingiber officinale","Problemas digestivos":"Cuminum cyminum","Tensão nervosa":"Lavandula angustifolia","Úlcera gástrica":"Cichorium intybus","Cólica menstrual":"Angelica sinensis","Candidíase":"Cucumis sativus","Colesterol alto":"Panax ginseng","Dores de estômago":"Matricaria chamomilla","Dor de dente":"Syzygium aromaticum","Infecções urinárias":"Vaccinium macrocarpon","Problemas respiratórios":"Thymus vulgaris","Enxaqueca":"Tanacetum parthenium","Azia":"Cucumis melo","Queimaduras":"Aloe vera","Anemia":"Trifolium pratense","Infecção de garganta":"Salvia officinalis","Dores nas articulações":"Boswellia serrata","Bronquite":"Althaea officinalis","Eczema":"Calendula officinalis","Câncer de fígado":"Andrographis paniculata","Hemorroidas":"Hamamelis virginiana","Vermes intestinais":"Chenopodium ambrosioides","Diarreia":"Coptis chinensis","Constipação":"Rheum officinale","Cálculos renais":"Asparagus racemosus","Hipotireoidismo":"Coleus forskohlii","Pele seca":"Cocos nucifera","Infecção de ouvido":"Echinacea purpurea","Amigdalite":"Melissa officinalis","Hemorragias":"Achillea millefolium","Alzheimer":"Ginkgo biloba","Cálculos biliares":"Taraxacum officinale","Tontura":"Zingiber officinale","Náuseas":"Mentha spicata","Febre":"Tilia cordata","Hipoglicemia":"Momordica charantia","Fadiga":"Eleutherococcus senticosus","Infecção de pele":"Chamaecyparis obtusa","Tosse":"Cinnamomum verum","Queda de cabelo":"Trigonella foenum-graecum","Alergia":"Nicotiana tabacum","Desidratação":"Cucumis sativus","Úlcera péptica":"Myrtus communis","Cistos ovarianos":"Vitex agnus-castus","Pneumonia":"Eucalyptus citriodora","Aftas":"Sanguinaria canadensis","Rinite alérgica":"Allium cepa","Pedra nos rins":"Tribulus terrestris","Acne":"Azadirachta indica","Psoríase":"Vitis vinifera","Hepatite":"Silybum marianum","Alergias alimentares":"Bromelain","Varizes":"Ruscus aculeatus","Obesidade":"Camellia sinensis","Candidíase oral":"Cinnamomum zeylanicum","Anorexia":"Glycyrrhiza glabra","Gripe suína":"Eucalyptus globulus","Tensão alta":"Hibiscus sabdariffa","Dores nas costas":"Capsicum annuum","Cistite":"Orthosiphon aristatus","Infecções bacterianas":"Berberis vulgaris","Úlceras na boca":"Carya ovata","Gota":"Prunus cerasus","Anemia ferropriva":"Trigonella foenum-graecum","Vermes":"Cucurbita pepo","Câncer de mama":"Curcuma longa","Câncer de pulmão":"Crataegus monogyna","Espirros":"Urtica dioica","Rugas":"Hibiscus rosa-sinensis","Lúpus":"Corydalis yanhusuo","Hipotensão":"Panax ginseng","Estresse":"Passiflora incarnata","Sinusite":"Cinnamomum zeylanicum","Hemorroidas internas":"Aesculus hippocastanum","Malária":"Artemisia annua","Hipocalcemia":"Ostrea edulis","Síndrome do intestino irritável":"Mentha piperita","Cálculos vesiculares":"Chanca Piedra","Dor crônica":"Cannabis sativa","Náusea e vômito":"Cannabis sativa","Epilepsia":"Cannabis sativa","Ansiedade":"Cannabis sativa","PTSD":"Cannabis sativa","Glaucoma":"Cannabis sativa","Esclerose múltipla":"Cannabis sativa","Distúrbios do sono":"Cannabis sativa","Infecção por fungos":"Tabebuia impetiginosa","Infecção intestinal":"Psidium guajava","Fígado gorduroso":"Cynara scolymus","Baixa imunidade":"Uncaria tomentosa","Herpes labial":"Melissa officinalis","Tireoidite de Hashimoto":"Nigella sativa","Alergia de pele":"Avena sativa","Retenção de líquidos":"Taraxacum officinale","Refluxo ácido":"Foeniculum vulgare","Infecção por H. pylori":"Brassica oleracea","TPM":"Vitex agnus-castus","Infecção fúngica vaginal":"Melaleuca alternifolia","Coceira na pele":"Hamamelis virginiana","Feridas na pele":"Symphytum officinale","Mau hálito":"Petroselinum crispum","Baixa libido":"Lepidium meyenii","Memória fraca":"Bacopa monnieri","Dores de ouvido":"Allium sativum","Dermatite":"Aloe vera","Vaginose bacteriana":"Borago officinalis","Menopausa":"Glycine max","Cólicas intestinais":"Mentha × piperita","Estômago irritado":"Ulmus rubra","Zumbido no ouvido":"Ginkgo biloba","Inflamação crônica":"Curcuma longa","Problemas de próstata":"Serenoa repens","Infecção por Candida":"Origanum vulgare","Falta de apetite":"Gentiana lutea","Inflamação da bexiga":"Arctostaphylos uva-ursi","Oleosidade":"Melaleuca alternifolia","Manchas na pele":"Rosa rubiginosa","Feridas":"Symphytum officinale","Queimaduras solares":"Aloe vera","Coceiras":"Hamamelis virginiana","Pele envelhecida":"Hibiscus rosa-sinensis","Pele inflamada":"Arctium lappa","Irritação na pele":"Matricaria chamomilla","Flacidez facial":"Centella asiatica","Cicatrizes de acne":"Lactuca sativa"};
 

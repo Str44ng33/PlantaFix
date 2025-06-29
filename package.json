@@ -14,11 +14,11 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d public",
+"scripts": {
+   "start": "react-scripts start",
+   "build": "react-scripts build",
+   "predeploy": "rm -f public/data/wwf_terr_ecos.geojson && npm run build",
+   "deploy": "gh-pages -d public",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
